@@ -5,6 +5,7 @@
 
 .cabecalho {
     padding: 15px 25px;
+    display: flex;
 }
 
 .cartao{
