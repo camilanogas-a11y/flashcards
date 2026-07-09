@@ -1,62 +1,100 @@
-const canvas = document.getElementById('canvasFundo');
-const ctx = canvas.getContext('2d');
+// =====================
+// VIRAR OS FLASHCARDS
+// =====================
 
-let particlesArray;
+const cards = document.querySelectorAll(".card");
 
-// Ajusta o tamanho do fundo conforme a tela
-function initCanvas() {
+cards.forEach(card => {
+    card.addEventListener("click", () => {
+        card.classList.toggle("virar");
+    });
+});
+
+// =====================
+// PESQUISA
+// =====================
+
+const pesquisa = document.getElementById("pesquisa");
+
+pesquisa.addEventListener("keyup", () => {
+
+    const texto = pesquisa.value.toLowerCase();
+
+    cards.forEach(card => {
+
+        const frente = card.querySelector(".front").textContent.toLowerCase();
+        const verso = card.querySelector(".back").textContent.toLowerCase();
+
+        if (frente.includes(texto) || verso.includes(texto)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+
+    });
+
+});
+
+// =====================
+// FUNDO ANIMADO
+// =====================
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+function ajustarTela() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 }
 
-// Objeto Partícula
-class Particle {
-    constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 15 + 1;
-        this.speedX = Math.random() * 1 - 0.5;
-        this.speedY = Math.random() * 1 - 0.5;
-    }
-    update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
+ajustarTela();
 
-        if (this.x > canvas.width) this.x = 0;
-        else if (this.x < 0) this.x = canvas.width;
-        if (this.y > canvas.height) this.y = 0;
-        else if (this.y < 0) this.y = canvas.height;
-    }
-    draw() {
-        ctx.fillStyle = 'rgba(255, 0, 127, 0.2)';
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-    }
+window.addEventListener("resize", ajustarTela);
+
+const bolinhas = [];
+
+for (let i = 0; i < 80; i++) {
+
+    bolinhas.push({
+
+        x: Math.random() * canvas.width,
+
+        y: Math.random() * canvas.height,
+
+        raio: Math.random() * 5 + 2,
+
+        dx: (Math.random() - 0.5) * 1,
+
+        dy: (Math.random() - 0.5) * 1
+
+    });
+
 }
 
-function init() {
-    particlesArray = [];
-    let numberOfParticles = 80;
-    for (let i = 0; i < numberOfParticles; i++) {
-        particlesArray.push(new Particle());
-    }
-}
+function desenhar() {
 
-function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
-        particlesArray[i].draw();
-    }
-    requestAnimationFrame(animate);
+
+    bolinhas.forEach(b => {
+
+        ctx.beginPath();
+
+        ctx.arc(b.x, b.y, b.raio, 0, Math.PI * 2);
+
+        ctx.fillStyle = "rgba(255,255,255,0.4)";
+
+        ctx.fill();
+
+        b.x += b.dx;
+        b.y += b.dy;
+
+        if (b.x < 0 || b.x > canvas.width) b.dx *= -1;
+        if (b.y < 0 || b.y > canvas.height) b.dy *= -1;
+
+    });
+
+    requestAnimationFrame(desenhar);
+
 }
 
-window.addEventListener('resize', () => {
-    initCanvas();
-    init();
-});
-
-initCanvas();
-init();
-animate();
+desenhar();
