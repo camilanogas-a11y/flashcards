@@ -1,49 +1,163 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"/>
-    <title>Tags</title>
+    <title>Flashcards de Tags HTML - Camila Nogas</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="cabecalho"> 
-        <h1>Descubra a verdade passando o mouse</h1>
-        <nav>
-            <a href="#"class="cabecalho-link>inicio">inicio</a>
-        </nav>
+    <canvas id="canvasFundo"></canvas>
+
+    <header>
+        <p>Feito por Camila Nogas, 2°B, C.E.I.A.S</p>
+        <h1>Dicionário de Tags VS Code</h1>
     </header>
-    <main>
-        <h2> Teste Seus Conhecimentos </h2>
-        <section>
-        <article class="cartao">
-            <div class="cartao-interno">
-            <div class="cartao-frente">
-                <img src="https://static.vecteezy.com/system/resources/thumbnails/052/861/260/small/neon-brain-connected-to-power-supply-illustrating-concept-of-brainstorming-vector.jpg" alt="corpo" class="cartao-imagem">
-                <p>Pessoas com o lado esquerdo do cérebro mais desenvolvido são lógicas, e as com o lado direito são criativas.</p>
+
+    <main class="container">
+        <div class="grid-flashcards">
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front"><code>&lt;!DOCTYPE html&gt;</code></div>
+                    <div class="card-back">Informa ao navegador que o documento é HTML5.</div>
+                </div>
             </div>
-            <div class="cartao-verso">
-                <img src="https://static.vecteezy.com/system/resources/thumbnails/052/861/260/small/neon-brain-connected-to-power-supply-illustrating-concept-of-brainstorming-vector.jpg" alt="corpo" class="cartao-imagem">
-                <p>Isso é um mito. Embora algumas funções tenham dominância em certas áreas, o cérebro trabalha como uma rede totalmente integrada. Tarefas complexas, como matemática ou arte, exigem os dois lados funcionando juntos.</p>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front"><code>&lt;html&gt;</code></div>
+                    <div class="card-back">A tag raiz que envolve todo o conteúdo da página.</div>
+                </div>
             </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front"><code>&lt;head&gt;</code></div>
+                    <div class="card-back">Contém metadados, links para CSS e o título da aba.</div>
+                </div>
             </div>
-        </article>
-         <article class="cartao">
-            <div class="cartao-interno">
-            <div class="cartao-frente">
-                <img src="https://static.vecteezy.com/system/resources/thumbnails/052/861/260/small/neon-brain-connected-to-power-supply-illustrating-concept-of-brainstorming-vector.jpg" alt="corpo" class="cartao-imagem">
-                <p>Pessoas com o lado esquerdo do cérebro mais desenvolvido são lógicas, e as com o lado direito são criativas.</p>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front"><code>&lt;body&gt;</code></div>
+                    <div class="card-back">Onde fica todo o conteúdo visível do site.</div>
+                </div>
             </div>
-            <div class="cartao-verso">
-                <img src="https://static.vecteezy.com/system/resources/thumbnails/052/861/260/small/neon-brain-connected-to-power-supply-illustrating-concept-of-brainstorming-vector.jpg" alt="corpo" class="cartao-imagem">
-                <p>Isso é um mito. Embora algumas funções tenham dominância em certas áreas, o cérebro trabalha como uma rede totalmente integrada. Tarefas complexas, como matemática ou arte, exigem os dois lados funcionando juntos.</p>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front"><code>&lt;h1&gt; a &lt;h6&gt;</code></div>
+                    <div class="card-back">Define títulos e subtítulos, sendo h1 o mais importante.</div>
+                </div>
             </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front"><code>&lt;p&gt;</code></div>
+                    <div class="card-back">Tag para criar parágrafos de texto.</div>
+                </div>
             </div>
-        </article>
-        </section>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front"><code>&lt;a&gt;</code></div>
+                    <div class="card-back">Cria links para outras páginas ou arquivos usando 'href'.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front"><code>&lt;img&gt;</code></div>
+                    <div class="card-back">Insere imagens no site usando o atributo 'src'.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front"><code>&lt;div&gt;</code></div>
+                    <div class="card-back">Define uma divisão ou seção no layout do site.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front"><code>&lt;ul&gt;</code></div>
+                    <div class="card-back">Cria uma lista não ordenada (com marcadores).</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front"><code>&lt;ol&gt;</code></div>
+                    <div class="card-back">Cria uma lista ordenada (numerada).</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front"><code>&lt;li&gt;</code></div>
+                    <div class="card-back">Define um item dentro de uma lista (ul ou ol).</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front"><code>&lt;header&gt;</code></div>
+                    <div class="card-back">Define o cabeçalho de uma página ou seção.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front"><code>&lt;footer&gt;</code></div>
+                    <div class="card-back">Define o rodapé da página.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front"><code>&lt;main&gt;</code></div>
+                    <div class="card-back">Indica o conteúdo principal e exclusivo do documento.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front"><code>&lt;section&gt;</code></div>
+                    <div class="card-back">Define seções genéricas em um documento.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front"><code>&lt;button&gt;</code></div>
+                    <div class="card-back">Cria um botão clicável.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front"><code>&lt;form&gt;</code></div>
+                    <div class="card-back">Cria um formulário para coletar dados do usuário.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front"><code>&lt;input&gt;</code></div>
+                    <div class="card-back">Cria campos de entrada de dados (texto, senha, etc).</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front"><code>&lt;nav&gt;</code></div>
+                    <div class="card-back">Define um conjunto de links de navegação.</div>
+                </div>
+            </div>
+        </div>
     </main>
-    <footer>
-        <p> Projeto feito por Camila Nogas 2°B.C.E.I.A.S </p>
-    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
