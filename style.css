@@ -8,7 +8,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(255, 106, 230);
+    background-color: rgb(255, 253, 255);
 }
 
 .cartao{
@@ -24,7 +24,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: rgb(249, 178, 255);
+    background-color: rgb(250, 200, 255);
 
 }
 
@@ -32,7 +32,7 @@ main{
     flex: 1;
 }
 .cabecalho-link{
-    color: rgb(255, 124, 227);
+    color: rgb(255, 230, 249);
     text-decoration: none;
 }
 
@@ -42,7 +42,16 @@ h1{
 }
 
 footer{
-    background-color: rgb(255, 135, 235);
+    background-color: rgb(255, 213, 248);
      padding: 15px 25px;
      color:aliceblue
+}
+
+.cartao-interno{
+    position: relative;
+}
+.cartao-frente, .cartao-verso {
+    position: absolute;
+border-radius: 12px;
+box-shadow: 0 6px 12px rgba(0,0,0, 0.15);
 }
