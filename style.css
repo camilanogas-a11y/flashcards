@@ -1,271 +1,146 @@
-/* RESET */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+/* --- Configurações Gerais e Cores --- */
+:root {
+    --rosa-escuro: #4A1525;
+    --rosa-medio: #A84666;
+    --rosa-principal: #D96B8B;
+    --rosa-claro: #F7CAD0;
+    --rosa-fundo: #FFF0F2;
 }
 
-body{
-
-    background:linear-gradient(135deg,#ffd1e8,#ffc0dd,#ffb0d4,#ff9fca);
-
-    overflow-x:hidden;
-
-    min-height:100vh;
-
-    position:relative;
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* FUNDO */
-
-#canvas{
-
-    position:fixed;
-
-    width:100%;
-
-    height:100%;
-
-    top:0;
-    left:0;
-
-    z-index:-1;
-
+body {
+    background-color: var(--rosa-fundo);
+    color: var(--rosa-escuro);
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-/* CABEÇALHO */
-
-header{
-
-    text-align:center;
-
-    padding:40px 20px;
-
+/* --- Canvas do Fundo Animado --- */
+#fundo-animado {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
 }
 
-header h1{
-
-    color:#b3005e;
-
-    font-size:40px;
-
-    margin-bottom:10px;
-
+/* --- Cabeçalho --- */
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, var(--rosa-principal), var(--rosa-medio));
+    color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-header p{
-
-    color:#7a0041;
-
-    margin-bottom:20px;
-
-    font-size:18px;
-
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
-/* PESQUISA */
-
-#pesquisa{
-
-    width:90%;
-    max-width:400px;
-
-    padding:12px;
-
-    border:none;
-
-    border-radius:30px;
-
-    outline:none;
-
-    font-size:17px;
-
-    text-align:center;
-
-    box-shadow:0 5px 15px rgba(0,0,0,.2);
-
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
 }
 
-/* CARDS */
-
-.container{
-
-    width:95%;
-
-    margin:auto;
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-
-    gap:25px;
-
-    padding:30px;
-
+/* --- Grid de Flashcards (Responsivo) --- */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    flex: 1;
 }
 
-/* CARTÃO */
-
-.card{
-
-    height:170px;
-
-    perspective:1000px;
-
-    cursor:pointer;
-
+/* --- Estrutura dos Flashcards --- */
+.flashcard {
+    background-color: transparent;
+    height: 200px;
+    perspective: 1000px;
+    cursor: pointer;
 }
 
-.inner{
-
-    width:100%;
-
-    height:100%;
-
-    position:relative;
-
-    transition:0.8s;
-
-    transform-style:preserve-3d;
-
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 15px;
 }
 
-.card.virar .inner{
-
-    transform:rotateY(180deg);
-
+/* Virada do card no Hover (Computador) e classe ativa (Telemóvel) */
+.flashcard:hover .card-inner, 
+.flashcard.active .card-inner {
+    transform: rotateY(180deg);
 }
 
-.front,
-.back{
-
-    position:absolute;
-
-    width:100%;
-
-    height:100%;
-
-    border-radius:20px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    text-align:center;
-
-    padding:15px;
-
-    color:white;
-
-    backface-visibility:hidden;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.2);
-
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid var(--rosa-claro);
 }
 
-/* FRENTE */
-
-.front{
-
-    background:linear-gradient(135deg,#ff5ea8,#ff82be);
-
-    font-size:28px;
-
-    font-weight:bold;
-
+.card-front {
+    background-color: white;
+    color: var(--rosa-medio);
 }
 
-/* VERSO */
-
-.back{
-
-    transform:rotateY(180deg);
-
-    background:linear-gradient(135deg,#ff2d86,#ff5ea8);
-
-    font-size:17px;
-
-    line-height:1.4;
-
+.card-front code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.8rem;
+    font-weight: bold;
+    background-color: var(--rosa-fundo);
+    padding: 5px 15px;
+    border-radius: 8px;
 }
 
-/* HOVER */
-
-.card:hover{
-
-    transform:translateY(-8px);
-
-    transition:.3s;
-
+.card-back {
+    background-color: var(--rosa-principal);
+    color: white;
+    transform: rotateY(180deg);
+    font-size: 1.05rem;
+    line-height: 1.4;
 }
 
-/* RODAPÉ */
-
-footer{
-
-    margin-top:40px;
-
-    text-align:center;
-
-    padding:25px;
-
-    color:#8a0049;
-
-    font-weight:bold;
-
-    background:rgba(255,255,255,.3);
-
-    backdrop-filter:blur(10px);
-
+/* --- Rodapé --- */
+footer {
+    background-color: var(--rosa-escuro);
+    color: var(--rosa-claro);
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
-/* CELULAR */
-
-@media(max-width:700px){
-
-header h1{
-
-font-size:30px;
-
-}
-
-header p{
-
-font-size:16px;
-
-}
-
-.container{
-
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-
-gap:18px;
-
-padding:15px;
-
-}
-
-.card{
-
-height:150px;
-
-}
-
-.front{
-
-font-size:22px;
-
-}
-
-.back{
-
-font-size:15px;
-
-}
-
+/* --- Ajustes para Telemóvel --- */
+@media (max-width: 600px) {
+    header h1 { font-size: 1.8rem; }
+    header p { font-size: 0.9rem; }
+    .container { gap: 15px; margin: 20px auto; }
+    .flashcard { height: 180px; }
 }
